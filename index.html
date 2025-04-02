@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <button onclick="window.location.href='http://localhost:8000/fetchAll'">
+            Get All the Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterData'">
+            Push Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterOrderID'">
+            Delete Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterNewData'">
+            Update Data
+        </button>
+    </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Basic Reset */
+        body, h1, p, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button-container">
+        <button onclick="window.location.href='http://localhost:8000/fetchAll'">
+            Get All the Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterData'">
+            Push Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterOrderID'">
+            Delete Data
+        </button>
+        <button onclick="window.location.href='http://localhost:8000/enterNewData'">
+            Update Data
+        </button>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" name="oderId" id="orderid" placeholder="Enter Order Id">
+    <button onclick="deleteData()">Submit</button>
+
+</body>
+
+<script>
+    function deleteData() {
+        const orderId = document.querySelector("#orderid").value
+
+        if (!orderId) { return }
+        const data = {
+            orderId: orderId,
+        };
+        console.log(data)
+
+        const res = fetch('/deleteData', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(() => console.log('success'))
+            .catch(() => console.log("failure"))
+    }
+
+</script>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Order</title>
+    <style>
+        /* Basic Reset */
+        body,
+        h1,
+        p,
+        input,
+        button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Delete Order</h1>
+        <form>
+            <div>
+                <label for="orderid">Order ID:</label>
+                <input type="number" name="orderId" id="orderid" placeholder="Enter Order Id" required>
+            </div>
+            <button type="button" onclick="deleteData()">Delete Order</button>
+        </form>
+    </div>
+
+    <script>
+        function deleteData() {
+            const orderId = document.querySelector("#orderid").value
+
+            if (!orderId) { return }
+            const data = {
+                orderId: orderId,
+            };
+            console.log(data)
+
+            const res = fetch('/deleteData', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(() => console.log('success'))
+                .catch(() => console.log("failure")
+                )
+            document.querySelector("#orderid").innerHTML = ''
+        }
+    </script>
+
+</body>
+
+</html>
