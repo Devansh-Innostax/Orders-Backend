@@ -1,17 +1,9 @@
 import express from "express"
-import pgPromise from "pg-promise";
-import dotenv from 'dotenv';
+import { addData, deleteData, getData, updateData } from "./controllers/manageCRUD.js";
 
 const app = express();
 const port = 8000;
-const pgp = pgPromise()
-dotenv.config();
 
-const db = pgp(`postgres://${process.env.USER}:${process.env.PWD}@localhost:5432/${process.env.DATABASE}`)
-
-
-// const db = pgp('postgres://postgres:user@localhost:5432/crudwithexpress')
-// const db = pgp('postgres://postgres:user@localhost:5432')
 
 app.listen(port, () => {
     console.log("App running on port: https://localhost:" + port);
@@ -19,15 +11,10 @@ app.listen(port, () => {
 
 app.use(express.json());
 
+// Serving Files for UI
+
 app.get('/', (req, res) => {
     res.sendFile('C:/Users/innostax-31-03/Desktop/Taining Phase/Express-Postgres-CRUD/index.html');
-})
-
-app.get('/fetchAll', async (req, res) => {
-    db.query("select * from orders")
-        .then((data) => {
-            res.send(data)
-        })
 })
 
 app.get('/enterData', (req, res) => {
@@ -40,20 +27,25 @@ app.get('/enterNewData', (req, res) => {
     res.sendFile('C:/Users/innostax-31-03/Desktop/Taining Phase/Express-Postgres-CRUD/enterNewData.html')
 })
 
-app.post('/putData', (req, res) => {
-    const { orderId, userId, price, username } = req.body;
-    db.query('insert into orders values($1,$2,$3,$4)', [orderId, userId, price, username]).then(() => console.log('data inserted'))
-    return res.sendFile('C:/Users/innostax-31-03/Desktop/Taining Phase/Express-Postgres-CRUD/index.html');
+
+// CRUD Endpoints
+
+app.get('/fetchAll', async (req, res) => {
+    const data = await getData();
+    res.send(data);
 })
 
-app.put('/updateData', (req, res) => {
-    const { orderId, price, username } = req.body;
-    db.query('update orders set price=$2,user_name=$3 where order_id=$1', [orderId, price, username]).then(() => console.log('data updated'))
-    return res.sendFile('C:/Users/innostax-31-03/Desktop/Taining Phase/Express-Postgres-CRUD/index.html');
+app.post('/putData', async (req, res) => {
+    const data = await addData(req);
+    res.send(data);
 })
 
-app.delete('/deleteData', (req, res) => {
-    const { orderId } = req.body;
-    db.query('delete from orders where order_id=$1', [orderId]).then(() => console.log('data deleted'))
-    window.location.href = 'http://localhost:8000/'
+app.put('/updateData', async (req, res) => {
+    const data = await updateData(req);
+    res.send(data)
+})
+
+app.delete('/deleteData', async (req, res) => {
+    const data = await deleteData(req);
+    res.send(data)
 })
